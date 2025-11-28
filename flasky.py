@@ -1,24 +1,12 @@
-from flask import Flask
-from flask_bootstrap import Bootstrap
-from flask_moment import Moment
-from flask_sqlalchemy import SQLAlchemy
-from config import config
+import os
+from app import create_app, db
+from app.models import Curso
 
-bootstrap = Bootstrap()
-moment = Moment()
-db = SQLAlchemy()
+app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 
-def create_app(config_name='default'):
-    app = Flask(__name__)
-    app.config.from_object(config[config_name])
-    config[config_name].init_app(app)
+@app.shell_context_processor
+def make_shell_context():
+    return dict(db=db, Curso=Curso)
 
-    bootstrap.init_app(app)
-    moment.init_app(app)
-    db.init_app(app)
-
-    # Registro do Blueprint principal
-    from .main import bp as main_bp
-    app.register_blueprint(main_bp)
-
-    return app
+if __name__ == '__main__':
+    app.run()
