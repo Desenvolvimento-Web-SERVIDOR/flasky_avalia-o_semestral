@@ -1,13 +1,6 @@
-import os
-from app import create_app, db
-from app.models import Curso
+from flasky import app, db
 
-app = create_app(os.getenv('FLASK_CONFIG') or 'default')
-
-@app.shell_context_processor
-def make_shell_context():
-    return dict(db=db, Curso=Curso)
-
-# O bloco abaixo garante que rode localmente se necessário
-if __name__ == '__main__':
-    app.run()
+# Script para criar o banco de dados manualmente
+with app.app_context():
+    db.create_all()
+    print("Banco de dados inicializado e tabelas criadas com sucesso!")
