@@ -5,7 +5,7 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'chave-super-secreta-prova-rogerio'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
-    # Configurações padrão necessárias para evitar erros de inicialização
+    # Configurações padrão (Placeholder)
     MAIL_SERVER = os.environ.get('MAIL_SERVER', 'smtp.googlemail.com')
     MAIL_PORT = int(os.environ.get('MAIL_PORT', '587'))
     MAIL_USE_TLS = os.environ.get('MAIL_USE_TLS', 'true').lower() in ['true', 'on', '1']
