@@ -8,7 +8,7 @@ from datetime import datetime
 # Rota Principal
 @bp.route('/')
 def index():
-    # SEUS DADOS
+ 
     aluno = "Rogério Santos Barbosa"
     prontuario = "PT3032051"
     return render_template('index.html', 
