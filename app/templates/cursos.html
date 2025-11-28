@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_content %}
+<!-- Renderiza o formulário estilo Bootstrap -->
+{{ wtf.quick_form(form) }}
+
+<br>
+<h1>Relação de cursos cadastrados</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Curso</th>
+            <th>Descrição</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for curso in cursos %}
+        <tr>
+            <td><strong>{{ curso.nome }}</strong></td>
+            <td>{{ curso.descricao }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<hr>
+<p>A data e hora local é {{ moment(current_time).format('LLLL') }}.</p>
+{% endblock %}
